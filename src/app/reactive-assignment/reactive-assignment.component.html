@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+                <div class="form-group m-2">
+                    <label>Project Name: </label>
+                    <input type="text" class="form-control" formControlName="projectName">
+                    <div class="alert alert-danger" *ngIf="fControl['projectName'].invalid && fControl['projectName'].touched">
+                        <span *ngIf="fControl['projectName'].errors && fControl['projectName'].errors['required']">Name is required!</span>
+                        <span *ngIf="fControl['projectName'].errors && fControl['projectName'].errors['checkName']">Test is not allowed</span>
+                    </div>
+                </div>
+                <div class="form-group  m-2">
+                    <label>Email: </label>
+                    <input type="text" class="form-control" formControlName="email">
+                    <div class="alert alert-danger" *ngIf="fControl['email'].invalid && fControl['email'].touched">
+                        <span *ngIf="fControl['email'].errors && fControl['email'].errors['required']">email is required!</span>
+                        <span *ngIf="fControl['email'].errors && fControl['email'].errors['email']">Enter Valid email</span>
+                    </div>
+                </div>
+                <div class="form-group  m-2">
+                    <label>Project Status: </label>
+                    <select formControlName="status">
+                        <option value="Stable" default>Stable</option>
+                        <option value="Critical">Critical</option>
+                        <option value="Finished">Finished</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="fControl['status'].invalid && fControl['status'].touched">
+                        <span *ngIf="fControl['status'].errors && fControl['status'].errors['required']">Status is required!</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary  m-2" type="submit" [disabled]="projectForm.invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
